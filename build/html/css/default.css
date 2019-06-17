@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+@page {
+    size: a4 landscape;
+    @top-left {
+
+    }
+
+    @top-right {
+
+    }
+
+    @top-center {
+
+    }
+}
+
+article {
+    clear: both;
+}
+
+article h2 {
+    break-before: always;
+    font-family: 'Futura PRO';
+    font-size: 30px;
+}
+
+.state {
+    position: relative;
+    float: left;
+    width: 4cm;
+    height: 5cm;
+    margin-bottom: 1em;
+    vertical-align: top;
+    text-align: right;
+    margin-bottom: 2cm;
+}
+
+.state:nth-child(7n+0) {
+    clear: left;
+}
+
+.state img {
+    display: block;
+    width: 170px;
+    height: 330px;
+    transform: scale(0.65);
+    transform-origin: 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

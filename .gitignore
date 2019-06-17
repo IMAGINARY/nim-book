@@ -1,1 +1,7 @@
-src/nim/__pycache__
+__pycache__
+env
+build/nim.pdf
+build/html/index.html
+build/html/img/states/*
+!.gitkeep
+
