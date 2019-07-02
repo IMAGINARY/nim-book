@@ -10,6 +10,22 @@ MISERE = 'misere'
 NORMAL = 'normal'
 
 
+def desperate_move(heaps):
+    """
+    Computes a move when all is lost and the only possibility is for the
+    other player to make a mistake.
+
+    The strategy is to remove one item from the first heap with elements.
+
+    :param heaps:
+    :return:
+    """
+    for index, heap in enumerate(heaps):
+        if heap > 0:
+            return index, 1
+    return 0, 0
+
+
 def nim(heaps, game_type, output=True):
     """
     Computes next move for Nim, for both game types normal and misere.
@@ -65,14 +81,14 @@ def nim(heaps, game_type, output=True):
         index_of_max = heaps.index(sizeof_max)
 
         if sizeof_max == 1 and is_odd:
-            return 0, 0
+            return desperate_move(heaps)
 
         # reduce the game to an odd number of 1's
         return index_of_max, sizeof_max - int(is_odd)
 
     nim_sum = functools.reduce(lambda x, y: x ^ y, heaps)
     if nim_sum == 0:
-        return 0, 0
+        return desperate_move(heaps)
 
     # Calc which move to make
     for index, heap in enumerate(heaps):
