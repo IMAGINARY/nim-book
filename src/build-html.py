@@ -9,11 +9,11 @@ def build():
         with tag('head'):
             doc.asis('<link href="css/default.css" rel="stylesheet">')
         with tag('body'):
-            for a in range(10, -1, -1):
-                for b in range(10, -1, -1):
+            for a in range(9, -1, -1):
+                for b in range(9, -1, -1):
                     with tag('article', id=f'page-{a}-{b}'):
                         line('h2', f'{a}-{b}')
-                        for c in range(10, -1, -1):
+                        for c in range(9, -1, -1):
                             with tag('div', klass='state', id=f'state-{a}-{b}-{c}'):
                                 doc.stag('img', src=f'img/states/{a}-{b}-{c}.svg')
 

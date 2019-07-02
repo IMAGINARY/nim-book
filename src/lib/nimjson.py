@@ -1,7 +1,7 @@
 import json
 import nim
 
-HEAP_SIZE = 10
+HEAP_SIZE = 9
 
 moves = {}
 for a in range(HEAP_SIZE, 0, -1):
