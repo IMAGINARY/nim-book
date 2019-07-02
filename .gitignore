@@ -1,6 +1,7 @@
 __pycache__
 env
 build/nim.pdf
+build/sample.svg
 build/html/index.html
 build/html/img/states/*
 !.gitkeep

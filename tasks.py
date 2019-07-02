@@ -15,19 +15,29 @@ def build_html(c):
     print('Building HTML')
     c.run(f'env/bin/python3 src/build-html.py {outpath}')
 
+
 @task
 def build_pdf(c):
     infile = os.path.abspath(os.path.relpath('build/html/index.html', os.path.dirname(__file__)))
     outfile = os.path.abspath(os.path.relpath('build/nim.pdf', os.path.dirname(__file__)))
     c.run(f'env/bin/weasyprint {infile} {outfile}')
 
+
+@task
+def build_sample_image(c):
+    outpath = os.path.abspath(os.path.relpath('build/sample.svg', os.path.dirname(__file__)))
+    print(f'Building sample image to {outpath}')
+    c.run(f'env/bin/python3 src/build-sample-image.py {outpath}')
+
+
 @task(build_state_images, build_html, build_pdf, default=True)
 def build(c):
     pass
 
+
 @task
 def clean(c, html=True, state_images=True):
-    patterns = ['build/nim.pdf']
+    patterns = ['build/nim.pdf', 'build/sample.svg']
     if html:
         patterns.append('build/html/index.html')
     if state_images:
