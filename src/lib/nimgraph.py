@@ -41,10 +41,11 @@ def create_heap(dwg, size, items_left, suggestion=None):
         group.add(create_heap_item(dwg, ITEM_SHAPE, ITEM_STROKE, y, ITEM_SIZE, removed))
         if suggestion is not None and (items_left - suggestion) <= i < items_left:
             group.add(
-                dwg.circle(
-                    center=(ITEM_SIZE + ITEM_STROKE * 2 + SUGGESTION_SIZE / 2, y + ITEM_SIZE / 2),
-                    r=SUGGESTION_SIZE
-                )
+                dwg.polygon([
+                    [ITEM_SIZE + ITEM_STROKE * 1.5, y + ITEM_SIZE / 2],
+                    [ITEM_SIZE + ITEM_STROKE * 2 + SUGGESTION_SIZE * 2, y + ITEM_SIZE / 2 + SUGGESTION_SIZE * 2],
+                    [ITEM_SIZE + ITEM_STROKE * 2 + SUGGESTION_SIZE * 2, y + ITEM_SIZE / 2 - SUGGESTION_SIZE * 2],
+                ])
                 .fill(STROKE_COLOR)
             )
     return group
@@ -71,7 +72,7 @@ def draw_state(outpath, heap_sizes, heap_states, suggestion):
             dwg.text(
                 text=str(heap_state),
                 insert=(i * (ITEM_SIZE + HEAP_SPACING) + ITEM_STROKE + (ITEM_SIZE / 2), TEXT_HEIGHT),
-                style=f'font-family: \'Futura PRO\'; font-weight: 600; font-size: {TEXT_HEIGHT}px; text-anchor: middle;'
+                style=f'font-family: \'Futura PRO\'; font-weight: 700; font-size: {TEXT_HEIGHT}px; text-anchor: middle;'
             )
         )
         heap = create_heap(dwg, heap_size, heap_state, suggested_amount if i == suggested_heap else None)
