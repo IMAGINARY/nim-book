@@ -72,7 +72,7 @@ def draw_state(outpath, heap_sizes, heap_states, suggestion):
             dwg.text(
                 text=str(heap_state),
                 insert=(i * (ITEM_SIZE + HEAP_SPACING) + ITEM_STROKE + (ITEM_SIZE / 2), TEXT_HEIGHT),
-                style=f'font-family: \'Futura PRO\'; font-weight: 700; font-size: {TEXT_HEIGHT}px; text-anchor: middle;'
+                style=f'font-family: \'Futura PRO Book\'; font-weight: bold; font-size: {TEXT_HEIGHT}px; text-anchor: middle;'
             )
         )
         heap = create_heap(dwg, heap_size, heap_state, suggested_amount if i == suggested_heap else None)
