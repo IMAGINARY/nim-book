@@ -1,13 +1,13 @@
 import sys
 import os
-from lib import nim, nimgraph
+from lib import nim, nimgraph_stacks
 
 def build_images(outdir):
     for a in range(10):
         for b in range(10):
             for c in range(10):
                 next_move = nim.nim([a, b, c], 'normal', False)
-                nimgraph.draw_state(os.path.join(outdir, f'{a}-{b}-{c}.svg'), [9, 9, 9], [a, b, c], next_move)
+                nimgraph_stacks.draw_state(os.path.join(outdir, f'{a}-{b}-{c}.svg'), [9, 9, 9], [a, b, c], next_move)
 
 
 
