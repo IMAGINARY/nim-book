@@ -63,7 +63,7 @@ def draw_state(outpath, heap_sizes, heap_states, suggestion):
     # Every heap must have a number of elements less or equal to the size of the heap
     assert all(map(lambda a_b: a_b[0] >= a_b[1], zip(heap_sizes, heap_states)))
 
-    dwg = svgwrite.Drawing(outpath, profile='full')
+    dwg = svgwrite.Drawing(outpath, profile='full', viewBox="0 0 170 300", preserveAspectRatio="xMaxYMax meet")
 
     suggested_heap, suggested_amount = suggestion
     baseline = TEXT_HEIGHT + TEXT_MARGIN + (max(heap_sizes) * (ITEM_SIZE + ITEM_SPACING)) - ITEM_SPACING + ITEM_STROKE

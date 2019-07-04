@@ -7,4 +7,4 @@ def build_sample(state, path):
 
 
 if __name__ == '__main__' and len(sys.argv) >= 2:
-    build_sample([5, 3, 4], sys.argv[1])
+    build_sample([5, 4, 3], sys.argv[1])

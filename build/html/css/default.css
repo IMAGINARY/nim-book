@@ -2,6 +2,11 @@
 
 @page {
     size: a4 landscape;
+    margin-top: 1cm;
+    margin-bottom: 1.5cm;
+    margin-left: 1.35cm;
+    margin-right: 1.35cm;
+
     @top-left {
 
     }
@@ -23,17 +28,18 @@ article h2 {
     break-before: always;
     font-family: 'Futura PRO';
     font-size: 30px;
+    margin: 0 0 1cm;
 }
 
 .state {
     position: relative;
     float: left;
-    width: 4cm;
-    height: 5cm;
-    margin-bottom: 1em;
+    width: 3.5cm;
+    height: 6.125cm;
     vertical-align: top;
     text-align: right;
     margin-bottom: 2cm;
+    margin-right: 1.7cm;
 }
 
 .state:nth-child(7n+0) {
@@ -44,10 +50,8 @@ article h2 {
     display: block;
     font-family: 'Futura PRO';
     font-weight: 700;
-    width: 170px;
-    height: 330px;
-    transform: scale(0.65);
-    transform-origin: 0 0;
+    width: 100%;
+    height: auto;
     position: absolute;
     top: 0;
     left: 0;
