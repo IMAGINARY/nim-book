@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "nim-book"
+version = "0.1.0"
+description = "A book that plays the game of Nim (very well)."
+authors = ["Eric Londaits <eric.londaits@imaginary.org>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+yattag = "^1.14.0"
+svgwrite = "^1.4.1"
+weasyprint = "^54.0"
+invoke = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

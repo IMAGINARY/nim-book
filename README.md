@@ -6,14 +6,12 @@ This repository builds the book.
 
 ## Installing
 
-- Ideally create a virtual environment (virtualenv) with python 3.7
+- Install poetry
 
-- Activate the new virtual environment
-
-- Install the dependencies by running
+- Install dependencies by running
 
 ```
-pip install -r requirements.txt
+poetry install
 ```
 
 ## Building
@@ -23,16 +21,14 @@ The build process uses the `invoke` task runner, which is installed as a depende
 Run
 
 ```
-invoke build
+poetry run invoke build
 ```
-
-(assuming `invoke` is in your path. It'll be installed in the `bin` directory of your virtual env).
 
 ### Other tasks
 
 There are other tasks you can `invoke`:
 
-- `build_state_images`: Builds the SVG files that represent game states
-- `build_html`: Builds the HTML file
-- `build_pdf`: Converts the HTML (plus SVG) to a PDF file
+- `build-state-images`: Builds the SVG files that represent game states
+- `build-html`: Builds the HTML file
+- `build-pdf`: Converts the HTML (plus SVG) to a PDF file
 - `clean`: Deletes output SVG, HTML and PDF file
