@@ -1,9 +1,8 @@
 import svgwrite
 
 ITEM_SIZE = 30
-ITEM_STROKE = 5
-ITEM_SPACING = 0
-ITEM_SHAPE = 'square'  # circle | square
+ITEM_STROKE = 3.5
+ITEM_SPACING = 5
 HEAP_SPACING = 25 + ITEM_STROKE
 TEXT_HEIGHT = 30
 TEXT_MARGIN = 2
@@ -13,41 +12,34 @@ STROKE_COLOR = 'black'
 BASE_COLOR = 'white'
 REMOVED_COLOR = '#999'
 
-
-def create_square_item(dwg, x, y, size, removed):
+def create_tile(dwg, x, y, size):
     return dwg.rect(insert=(x, y), size=(size, size))\
-        .fill(REMOVED_COLOR if removed else BASE_COLOR)\
+        .fill(REMOVED_COLOR)
+
+
+def create_magnet(dwg, x, y, size):
+    radius = size / 2 - ITEM_STROKE
+    return dwg.circle(center=(x + radius + ITEM_STROKE, y + radius + ITEM_STROKE), r=radius)\
+        .fill(BASE_COLOR)\
         .stroke(STROKE_COLOR, width=ITEM_STROKE)
-
-
-def create_round_item(dwg, x, y, size, removed):
-    return dwg.circle(center=(x + size / 2, y + size / 2), r=size / 2)\
-        .fill(REMOVED_COLOR if removed else BASE_COLOR)\
-        .stroke(STROKE_COLOR, width=ITEM_STROKE)
-
-
-def create_heap_item(dwg, shape, x, y, size, removed):
-    if shape == 'square':
-        return create_square_item(dwg, x, y, size, removed)
-    else:
-        return create_round_item(dwg, x, y, size, removed)
 
 
 def create_heap(dwg, size, items_left, suggestion=None):
     group = dwg.g()
     for i in range(size):
-        y = i * (ITEM_SIZE + ITEM_SPACING)
-        removed = (size - i) <= (size - items_left)
-        group.add(create_heap_item(dwg, ITEM_SHAPE, ITEM_STROKE, y, ITEM_SIZE, removed))
-        if suggestion is not None and (items_left - suggestion) <= i < items_left:
-            group.add(
-                dwg.polygon([
-                    [ITEM_SIZE + ITEM_STROKE * 1.5, y + ITEM_SIZE / 2],
-                    [ITEM_SIZE + ITEM_STROKE * 2 + SUGGESTION_SIZE * 2, y + ITEM_SIZE / 2 + SUGGESTION_SIZE * 2],
-                    [ITEM_SIZE + ITEM_STROKE * 2 + SUGGESTION_SIZE * 2, y + ITEM_SIZE / 2 - SUGGESTION_SIZE * 2],
-                ])
-                .fill(STROKE_COLOR)
-            )
+        y = i * (ITEM_SIZE + ITEM_SPACING) + ITEM_SPACING
+        removed = i >= items_left
+        group.add(create_tile(dwg, 0, y, ITEM_SIZE))
+        if (not removed):
+            group.add(create_magnet(dwg, 0, y, ITEM_SIZE))
+            if suggestion is not None and (items_left - suggestion) <= i < items_left:
+                group.add(
+                    dwg.text(
+                        text='×',
+                        insert=(ITEM_SIZE - ITEM_STROKE * 0.5, y + TEXT_HEIGHT * 0.9),
+                        style=f'font-family: \'Futura PRO Book\'; font-weight: bold; font-size: {TEXT_HEIGHT}px; text-anchor: left;'
+                    )
+                )
     return group
 
 
@@ -63,7 +55,7 @@ def draw_state(outpath, heap_sizes, heap_states, suggestion):
     # Every heap must have a number of elements less or equal to the size of the heap
     assert all(map(lambda a_b: a_b[0] >= a_b[1], zip(heap_sizes, heap_states)))
 
-    dwg = svgwrite.Drawing(outpath, profile='full', viewBox="0 0 170 310", preserveAspectRatio="xMaxYMax meet")
+    dwg = svgwrite.Drawing(outpath, profile='full', viewBox="-20 0 200 350", preserveAspectRatio="xMidYMid meet", size=('200', '350'))
 
     suggested_heap, suggested_amount = suggestion
     baseline = TEXT_HEIGHT + TEXT_MARGIN + (max(heap_sizes) * (ITEM_SIZE + ITEM_SPACING)) - ITEM_SPACING + ITEM_STROKE

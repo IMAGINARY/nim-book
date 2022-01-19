@@ -5,8 +5,8 @@ ITEM_STROKE = 5
 ITEM_SPACING = 0
 ITEM_SHAPE = 'square'  # circle | square
 HEAP_SPACING = 25 + ITEM_STROKE
-TEXT_HEIGHT = 20
-TEXT_MARGIN = 2
+TEXT_HEIGHT = 30
+TEXT_MARGIN = 0
 SUGGESTION_SIZE = 6
 
 STROKE_COLOR = 'black'
@@ -58,7 +58,7 @@ def draw_state(outpath, heap_sizes, heap_states, suggestion):
     # Every heap must have a number of elements less or equal to the size of the heap
     assert all(map(lambda a_b: a_b[0] >= a_b[1], zip(heap_sizes, heap_states)))
 
-    dwg = svgwrite.Drawing(outpath, profile='full', viewBox="0 -310 170 310", preserveAspectRatio="xMaxYMax meet")
+    dwg = svgwrite.Drawing(outpath, profile='full', viewBox="0 -310 170 315", preserveAspectRatio="xMaxYMax meet")
 
     suggested_heap, suggested_amount = suggestion
     baseline = TEXT_HEIGHT + TEXT_MARGIN + (max(heap_sizes) * (ITEM_SIZE + ITEM_SPACING)) - ITEM_SPACING + ITEM_STROKE
@@ -66,7 +66,7 @@ def draw_state(outpath, heap_sizes, heap_states, suggestion):
         dwg.add(
             dwg.text(
                 text=str(heap_state),
-                insert=(i * (ITEM_SIZE + HEAP_SPACING) + ITEM_STROKE + (ITEM_SIZE / 2), -5),
+                insert=(i * (ITEM_SIZE + HEAP_SPACING) + ITEM_STROKE + (ITEM_SIZE / 2), 0),
                 style=f'font-family: \'Futura PRO Book\'; font-weight: bold; font-size: {TEXT_HEIGHT}px; text-anchor: middle;'
             )
         )

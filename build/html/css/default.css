@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 @page {
     size: a4 landscape;
     margin-top: 1cm;
@@ -26,20 +31,27 @@ article {
 
 article h2 {
     break-before: always;
-    font-family: 'Futura PRO';
+    font-family: 'Futura';
     font-size: 30px;
+    font-weight: 700;
     margin: 0 0 1cm;
+}
+
+article.even h2 {
+    text-align: right;
 }
 
 .state {
     position: relative;
     float: left;
-    width: 3.5cm;
-    height: 6.125cm;
+    width: 4cm;
+    height: 7cm;
     vertical-align: top;
     text-align: right;
-    margin-bottom: 2cm;
-    margin-right: 1.7cm;
+    margin-bottom: 1.65cm;
+    margin-left: 0.65cm;
+    margin-right: 0.65cm;
+
 }
 
 .state:nth-child(7n+0) {
@@ -48,7 +60,7 @@ article h2 {
 
 .state img {
     display: block;
-    font-family: 'Futura PRO';
+    font-family: 'Futura';
     font-weight: 700;
     width: 100%;
     height: auto;
